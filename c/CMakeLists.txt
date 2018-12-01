@@ -13,6 +13,7 @@ set(SOURCE_FILES
         main.c
         src/memory.c
         src/exception.c
+        src/graph.c
 )
 
 # Include(s)
