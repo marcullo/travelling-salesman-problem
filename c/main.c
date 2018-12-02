@@ -23,9 +23,14 @@ int main(int argc, char *argv[])
     solver_run_in_parallel(solver_pthreads, 4);
     solver_show(solver_pthreads);
 
+    solver_t* solver_openmp = solver_create(SOLVER_OPENMP, graph);
+    solver_run_in_parallel(solver_openmp, 4);
+    solver_show(solver_openmp);
+
     graph_delete(&graph);
     solver_delete(&solver_seq);
     solver_delete(&solver_pthreads);
+    solver_delete(&solver_openmp);
 
     MEMORY_CHECK();
     return 0;

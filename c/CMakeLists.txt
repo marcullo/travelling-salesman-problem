@@ -20,6 +20,7 @@ set(SOURCE_FILES
         src/solver.c
         src/solvers/solver_seq.c
         src/solvers/solver_pthreads.c
+        src/solvers/solver_openmp.c
 )
 
 # Include(s)

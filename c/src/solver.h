@@ -9,6 +9,7 @@
 typedef enum {
     SOLVER_SEQUENTIAL = 0,
     SOLVER_PTHREADS,
+    SOLVER_OPENMP,
     SOLVER_TOP
 } solver_type_t;
 

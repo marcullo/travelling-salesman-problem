@@ -10,10 +10,12 @@
 #include "exception.h"
 #include "solver_seq.h"
 #include "solver_pthreads.h"
+#include "solver_openmp.h"
 
 static const char* solver_names[] = {
         [SOLVER_SEQUENTIAL] = "SequentialSolver",
         [SOLVER_PTHREADS] = "PthreadsSolver",
+        [SOLVER_OPENMP] = "OpenMPSolver",
 };
 
 solver_t* solver_create(solver_type_t type, const graph_t* graph)
@@ -41,6 +43,10 @@ solver_t* solver_create(solver_type_t type, const graph_t* graph)
 
     switch (type)
     {
+        case SOLVER_OPENMP:
+            solver->solve = &solver_openmp_run;
+            break;
+
         case SOLVER_PTHREADS:
             solver->solve = &solver_pthreads_run;
             break;
