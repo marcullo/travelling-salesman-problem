@@ -9,9 +9,11 @@
 #include "memory.h"
 #include "exception.h"
 #include "solver_seq.h"
+#include "solver_pthreads.h"
 
 static const char* solver_names[] = {
         [SOLVER_SEQUENTIAL] = "SequentialSolver",
+        [SOLVER_PTHREADS] = "PthreadsSolver",
 };
 
 solver_t* solver_create(solver_type_t type, const graph_t* graph)
@@ -39,6 +41,10 @@ solver_t* solver_create(solver_type_t type, const graph_t* graph)
 
     switch (type)
     {
+        case SOLVER_PTHREADS:
+            solver->solve = &solver_pthreads_run;
+            break;
+
         case SOLVER_SEQUENTIAL:
         default:
             solver->solve = &solver_seq_run;

@@ -19,6 +19,7 @@ set(SOURCE_FILES
         src/permutation.c
         src/solver.c
         src/solvers/solver_seq.c
+        src/solvers/solver_pthreads.c
 )
 
 # Include(s)
