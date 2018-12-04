@@ -1,0 +1,3 @@
+# Profile tests output folder
+# Igore anything here, except itself
+!.gitignore
