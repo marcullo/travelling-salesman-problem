@@ -19,6 +19,10 @@ set(SOURCE_FILES
 # Include(s)
 set(INCLUDE_DIRS
         src
+        src/solvers
+        src/states
+        src/timers
+        src/solvers
 )
 
 # Compiler flag(s) and option(s)
