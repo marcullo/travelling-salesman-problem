@@ -15,6 +15,7 @@ set(SOURCE_FILES
 
 # Include(s)
 set(INCLUDE_DIRS
+        src
 )
 
 # Compiler flag(s) and option(s)

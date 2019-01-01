@@ -1,7 +1,13 @@
-#include <iostream>
+#include "Graph.hpp"
+
+using tsp::Graph;
 
 int main(int argc, char* argv[])
 {
-    std::cout << "Hello, world" << std::endl;
+    const int graphSize = 5;
+
+    Graph graph{graphSize};
+    graph.show();
+
     return 0;
 }
