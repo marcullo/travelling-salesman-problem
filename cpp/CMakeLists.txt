@@ -23,6 +23,7 @@ set(INCLUDE_DIRS
         src/states
         src/timers
         src/solvers
+        src/states
 )
 
 # Compiler flag(s) and option(s)
