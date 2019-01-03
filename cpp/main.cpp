@@ -1,19 +1,12 @@
-#include "Graph.hpp"
-#include "ComparisonState.hpp"
+#include "Loader.hpp"
 
-using tsp::Graph;
-using tsp::ComparisonState;
+using tsp::Loader;
 
 int main(int argc, char* argv[])
 {
-    const int graphSize = 5;
-    const int threadsNr = 4;
-
-    Graph graph{graphSize};
-    graph.show();
-
-    ComparisonState state{threadsNr};
-    state.run(graph);
+    Loader loader;
+    const auto& [state, graph] = loader.load(argc, argv);
+    state->run(*graph);
 
     return 0;
 }
