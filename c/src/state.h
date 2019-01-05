@@ -6,6 +6,7 @@
 #include "solver.h"
 
 typedef enum {
+    STATE_SIMPLE_COMPARISON = 0,
     STATE_TOP
 } state_t;
 

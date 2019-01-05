@@ -1,9 +1,6 @@
-#include <omp.h>
-
 #include "memory.h"
-#include "graph.h"
 #include "exception.h"
-#include "solver.h"
+#include "state_simple_comparison.h"
 
 int main(int argc, char *argv[])
 {
@@ -11,26 +8,12 @@ int main(int argc, char *argv[])
         exception_throw(EX_ARGUMENT, "You should provide an input file name!");
     }
 
-    graph_t* graph = graph_create_from_file(argv[1]);
+    state_ctx_t ctx;
 
-    graph_show(graph);
-
-    solver_t* solver_seq = solver_create(SOLVER_SEQUENTIAL, graph);
-    solver_run(solver_seq);
-    solver_show(solver_seq);
-
-    solver_t* solver_pthreads = solver_create(SOLVER_PTHREADS, graph);
-    solver_run_in_parallel(solver_pthreads, 4);
-    solver_show(solver_pthreads);
-
-    solver_t* solver_openmp = solver_create(SOLVER_OPENMP, graph);
-    solver_run_in_parallel(solver_openmp, 4);
-    solver_show(solver_openmp);
-
-    graph_delete(&graph);
-    solver_delete(&solver_seq);
-    solver_delete(&solver_pthreads);
-    solver_delete(&solver_openmp);
+    ctx.generated = false;
+    ctx.threads_nr = 4;
+    ctx.graph_file_name = argv[1];
+    state_simple_comparison_run(&ctx);
 
     MEMORY_CHECK();
     return 0;

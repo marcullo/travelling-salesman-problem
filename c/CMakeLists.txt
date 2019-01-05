@@ -25,12 +25,14 @@ set(SOURCE_FILES
         src/solvers/solver_seq.c
         src/solvers/solver_pthreads.c
         src/solvers/solver_openmp.c
+        src/states/state_simple_comparison.c
 )
 
 # Include(s)
 set(INCLUDE_DIRS
         src
         src/solvers
+        src/states
 )
 
 # Compiler flag(s) and option(s)
