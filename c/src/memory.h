@@ -4,9 +4,6 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-// Uncomment to see debug messages of allocation
-//#define DEBUG_MEMORY
-
 #ifdef DEBUG_MEMORY
 #define MALLOC(type, size) (type*) malloc_wrapper(size, __FUNCTION__, NULL)
 #define MALLOC_E(type, size, error_msg) (type*) malloc_wrapper(size, __FUNCTION__, error_msg)

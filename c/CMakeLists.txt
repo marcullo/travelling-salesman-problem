@@ -10,6 +10,7 @@ find_package(OpenMP REQUIRED)
 
 # Parameters
 #set(AUTOMATIC_VECTORIZE TRUE)
+#set(DEBUG_MEMORY TRUE)
 
 # Source(s)
 set(SOURCE_FILES
@@ -37,6 +38,10 @@ set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS} -Wall -Werror -Wno-format -Wno-incompatible-pointer-types -Wno-pointer-to-int-cast")
 set(CMAKE_C_FLAGS_DEBUG  "-g -DDEBUG")
 set(CMAKE_C_FLAGS_RELEASE "-O3 -DNDEBUG")
+
+if(DEBUG_MEMORY)
+    set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -DDEBUG_MEMORY")
+endif()
 
 if(AUTOMATIC_VECTORIZE)
     set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -ftree-vectorize")
