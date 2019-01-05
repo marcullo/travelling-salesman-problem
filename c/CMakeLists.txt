@@ -11,6 +11,8 @@ find_package(OpenMP REQUIRED)
 # Source(s)
 set(SOURCE_FILES
         main.c
+        src/memory.c
+        src/exception.c
 )
 
 # Include(s)
