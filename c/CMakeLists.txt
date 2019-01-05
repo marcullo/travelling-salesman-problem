@@ -8,6 +8,9 @@ set(LANGUAGES C)
 #Package(s)
 find_package(OpenMP REQUIRED)
 
+# Parameters
+#set(AUTOMATIC_VECTORIZE TRUE)
+
 # Source(s)
 set(SOURCE_FILES
         main.c
