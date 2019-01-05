@@ -26,6 +26,7 @@ set(SOURCE_FILES
         src/solvers/solver_pthreads.c
         src/solvers/solver_openmp.c
         src/states/state_simple_comparison.c
+        src/states/state_duration_test.c
 )
 
 # Include(s)

@@ -7,6 +7,7 @@
 
 typedef enum {
     STATE_SIMPLE_COMPARISON = 0,
+    STATE_DURATION_TEST,
     STATE_TOP
 } state_t;
 
