@@ -21,6 +21,7 @@ set(SOURCE_FILES
         src/path.c
         src/utils.c
         src/permutation.c
+        src/loader.c
         src/solver.c
         src/solvers/solver_seq.c
         src/solvers/solver_pthreads.c

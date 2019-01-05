@@ -1,31 +1,25 @@
-#include "memory.h"
-#include "exception.h"
 #include "state_simple_comparison.h"
 #include "state_duration_test.h"
+#include "loader.h"
 
 int main(int argc, char *argv[])
 {
-    if (argc != 2) {
-        exception_throw(EX_ARGUMENT, "You should provide an input file name!");
-    }
-
+    state_t state;
     state_ctx_t ctx;
 
-    ctx.generated = false;
-    ctx.threads_nr = 4;
-    ctx.graph_file_name = argv[1];
+    loader_load_arguments(argc, argv, &state, &ctx);
 
-    state_simple_comparison_run(&ctx);
+    switch (state)
+    {
+        case STATE_DURATION_TEST:
+            state_duration_test_run(&ctx);
+            break;
 
-    ctx.solver_type = SOLVER_SEQUENTIAL;
-    state_duration_test_run(&ctx);
+        case STATE_SIMPLE_COMPARISON:
+        default:
+            state_simple_comparison_run(&ctx);
+            break;
+    }
 
-    ctx.solver_type = SOLVER_PTHREADS;
-    state_duration_test_run(&ctx);
-
-    ctx.solver_type = SOLVER_OPENMP;
-    state_duration_test_run(&ctx);
-
-    MEMORY_CHECK();
     return 0;
 }
