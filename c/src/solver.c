@@ -8,8 +8,10 @@
 
 #include "memory.h"
 #include "exception.h"
+#include "solver_seq.h"
 
 static const char* solver_names[] = {
+        [SOLVER_SEQUENTIAL] = "SequentialSolver",
 };
 
 solver_t* solver_create(solver_type_t type, const graph_t* graph)
@@ -37,7 +39,9 @@ solver_t* solver_create(solver_type_t type, const graph_t* graph)
 
     switch (type)
     {
+        case SOLVER_SEQUENTIAL:
         default:
+            solver->solve = &solver_seq_run;
             break;
     }
 
@@ -62,6 +66,10 @@ void solver_run(solver_t* solver)
         return;
     }
 
+    if (solver->solve != &solver_seq_run) {
+        exception_throw(EX_ARGUMENT, "You cannot run sequential solver using parallel method!");
+    }
+
     solver->start_time = omp_get_wtime();
 
     solver->solved = solver->solve(solver->graph, solver->best_path, solver->graph->size);
@@ -73,6 +81,10 @@ void solver_run_in_parallel(solver_t* solver, size_t threads_nr)
 {
     if (!solver) {
         return;
+    }
+
+    if (solver->solve == &solver_seq_run) {
+        exception_throw(EX_ARGUMENT, "You cannot run parallel solver using sequential method!");
     }
 
     solver->start_time = omp_get_wtime();

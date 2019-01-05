@@ -14,11 +14,17 @@ set(SOURCE_FILES
         src/memory.c
         src/exception.c
         src/graph.c
+        src/path.c
+        src/utils.c
+        src/permutation.c
+        src/solver.c
+        src/solvers/solver_seq.c
 )
 
 # Include(s)
 set(INCLUDE_DIRS
         src
+        src/solvers
 )
 
 # Compiler flag(s) and option(s)

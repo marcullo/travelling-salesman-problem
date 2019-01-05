@@ -7,6 +7,7 @@
 #include "path.h"
 
 typedef enum {
+    SOLVER_SEQUENTIAL = 0,
     SOLVER_TOP
 } solver_type_t;
 
