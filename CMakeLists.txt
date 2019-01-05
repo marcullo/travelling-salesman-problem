@@ -10,6 +10,8 @@ set(INCLUDE_DIRS src)
 
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS} -Wall -Werror -Wno-incompatible-pointer-types -Wno-pointer-to-int-cast")
+set(CMAKE_C_FLAGS_DEBUG  "-g -DDEBUG")
+set(CMAKE_C_FLAGS_RELEASE "-O3 -DNDEBUG")
 
 add_executable(${TARGET_NAME} ${SOURCE_FILES})
 target_include_directories(${TARGET_NAME} PRIVATE ${INCLUDE_DIRS})
