@@ -1,13 +1,26 @@
-#include <mpi.h>
 #include <iostream>
+#include "MPISolver.hpp"
+
+using tsp::MPISolver;
+using tsp::Graph;
 
 int main(int argc, char* argv[])
 {
-    int world_rank;
-    MPI_Init(NULL, NULL);
-    MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
-    std::cout << world_rank << ": Hello, MPI world!" << std::endl;
-    MPI_Finalize();
+    try {
+        Graph graph{5};
+        MPISolver solver;
+
+        graph.show();
+        solver.solve(graph);
+
+        if (solver.isRoot()) {
+            graph.show();
+            solver.showResult();
+        }
+    } catch (std::exception& ex) {
+        std::cerr << ex.what() << std::endl;
+    }
+
     return 0;
 }
 

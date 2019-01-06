@@ -15,6 +15,8 @@ set(SOURCE_FILES
 
 # Include(s)
 set(INCLUDE_DIRS
+        ${PROJECT_SOURCE_DIR}/cpp/src
+        src
 )
 
 # Compiler flag(s) and option(s)
