@@ -1,20 +1,21 @@
 #include <iostream>
 #include "MPISolver.hpp"
+#include "MPILoader.hpp"
 
+using tsp::MPILoader;
 using tsp::MPISolver;
-using tsp::Graph;
 
 int main(int argc, char* argv[])
 {
     try {
-        Graph graph{5};
+        MPILoader loader;
         MPISolver solver;
 
-        graph.show();
-        solver.solve(graph);
+        const auto graph = loader.load(argc, argv);
+        solver.solve(*graph);
 
         if (solver.isRoot()) {
-            graph.show();
+            graph->show();
             solver.showResult();
         }
     } catch (std::exception& ex) {
